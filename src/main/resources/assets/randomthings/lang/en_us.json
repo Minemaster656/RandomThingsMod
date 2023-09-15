@@ -1,3 +1,5 @@
 {
-  "item.randomthings.warp_crystal": "Warp crystal"
+  "item.randomthings.warp_crystal": "Warp crystal",
+  "itemGroup.mod_main_tab": "Random Things",
+  "block.randomthings.warp_crystal_ore": "Warp crystal ore"
 }

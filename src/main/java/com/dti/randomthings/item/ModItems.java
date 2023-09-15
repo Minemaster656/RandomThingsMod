@@ -1,6 +1,7 @@
 package com.dti.randomthings.item;
 
 import com.dti.randomthings.RandomThings;
+import com.dti.randomthings.utils.ModItemGroups;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -16,6 +17,6 @@ public class ModItems {
         ITEMS.register(eventBus);
     }
     public static final RegistryObject<Item> WARP_CRYSTAL = ITEMS.register("warp_crystal",
-            ()-> new Item(new Item.Properties().tab(ItemGroup.TAB_MISC)));
+            ()-> new Item(new Item.Properties().tab(ModItemGroups.MOD_MAIN_TAB)));
 
 }

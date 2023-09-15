@@ -1,5 +1,6 @@
 package com.dti.randomthings;
 
+import com.dti.randomthings.block.ModBlocks;
 import com.dti.randomthings.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -43,7 +44,7 @@ public class RandomThings {
 
 
         ModItems.register(EventBus);
-
+        ModBlocks.register(EventBus);
 
 
         // Register ourselves for server and other game events we are interested in
