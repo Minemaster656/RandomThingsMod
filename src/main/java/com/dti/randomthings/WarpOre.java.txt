@@ -1,0 +1,45 @@
+package com.dti.randomthings;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
+import net.minecraft.block.state.BlockBehaviour;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTableList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+
+public class WarpOre extends Block {
+
+    public static final RegistryObject<WarpOre> BLOCK = DeferredRegister.create(ForgeRegistries.BLOCKS, "randomthings")
+            .register("warp_ore", () -> new WarpOre());
+
+    public WarpOre() {
+        super(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).hardnessAndResistance(3.0f, 3.0f).sound(SoundType.STONE));
+    }
+
+    @Override
+    public ItemStack getPickBlock(BlockState state, IBlockReader world, BlockPos pos, BlockState otherBlock) {
+        return new ItemStack(WarpOre.BLOCK.get());
+    }
+
+    @Override
+    public void dropNaturally(BlockState state, World world, BlockPos pos, int fortune, int silkTouch, LootTable lootTable) {
+        if (silkTouch == 0) {
+            dropStack(world, pos, new ItemStack(WarpOre.BLOCK.get()));
+            dropStack(world, pos, new ItemStack(Items.DIAMOND, 1 + world.rand.nextInt(2)));
+        } else {
+            super.dropNaturally(state, world, pos, fortune, silkTouch, lootTable);
+        }
+    }
+
+    private void dropStack(World world, BlockPos pos, ItemStack stack) {
+        world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), stack));
+    }
+}
